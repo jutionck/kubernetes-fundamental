@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-nginx-new
+spec:
+  selector:
+    matchLabels:
+      app: sample-nginx-new
+  template:
+    metadata:
+      labels:
+        app: sample-nginx-new
+    spec:
+      containers:
+        - name: sample-nginx-new
+          # contoh disini kita menggunakan versi awal
+          image: nginx:alpine
+          resources:
+            limits:
+              memory: '108Mi'
+              cpu: '10m'
+          ports:
+            - containerPort: 80
+          env:
+            - name: APP_NAME
+              value: 'nginxkuboss'
+            - name: APP_STATUS
+              value: 'active'
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: configkuboss
+                  key: APP_KEY
+            - name: AUTHOR
+              valueFrom:
+                configMapKeyRef:
+                  name: configmapkuboss
+                  key: AUTHOR
+          volumeMount:
+            - name: config-key-ssh
+              mountPath: /var/secret/ssh # contoh saja
+              readOnly: true
+      volume:
+        - name: config-key-ssh
+          secret:
+            secretName: configkeyboss

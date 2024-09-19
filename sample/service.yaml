@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service-nginx
+spec:
+  # tambahkan ini untuk type service lain
+  type: ClusterIP
+  selector:
+    app: sample-nginx-new
+  ports:
+    - port: 8080
+      targetPort: 80
+      # untuk penggunaan service nodePort
+      # port yang disarankan adalah 30000-32767
+      # nodePort: 30001

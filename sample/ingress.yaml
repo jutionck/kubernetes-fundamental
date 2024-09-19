@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sample-ingress-nginx
+  labels:
+    name: sample-ingress-nginx
+spec:
+  rules:
+    - host: foyafoya.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: sample-service-nginx
+                port:
+                  number: 8080

@@ -1,0 +1,26 @@
+# Referensi untuk template https://kubernetes.io/id/docs/concepts/workloads/controllers/replicaset
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: sample-nginx-new
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-nginx-new
+  template:
+    metadata:
+      name: sample-nginx-new
+      labels:
+        app: sample-nginx-new
+    spec:
+      containers:
+        - name: sample-nginx-new
+          image: nginx:alpine
+          resources:
+            limits:
+              memory: '10Mi'
+              cpu: '10m'
+          ports:
+            - containerPort: 80
