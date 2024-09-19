@@ -1,6 +1,6 @@
 # Kubernetes Lab
 
-https://www.youtube.com/watch?v=7zInpQfPRqo
+Referensi dari kang `Rahardian`: https://www.youtube.com/watch?v=7zInpQfPRqo
 
 ## Pengenalan
 
